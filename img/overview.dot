@@ -1,0 +1,26 @@
+digraph {
+    rankdir=LR;
+
+    subgraph cluster_test {
+        label="testing";
+        {X_test Y_test} -> B_test;
+        A_test -> Y_test;
+        A_test [shape=note label="Object X"];
+        B_test [shape=note label="Generated X"];
+        Y_test [shape=signature label="The others"];
+        X_test [shape=signature label="Specified property" color=blue];
+    }
+
+    subgraph cluster_train {
+        label="training";
+        A_train -> {Y_train X_train} -> B_train;
+        A_train [shape=note label="Object X"];
+        B_train [shape=note label="Reconstructed X"];
+        Y_train [shape=signature label="The others"];
+        X_train [shape=signature label="A property"];
+
+        Y_train -> C_train [label="CAN'T"];
+        C_train [shape=note label="Reconstructed only with this"];
+    }
+
+}
